@@ -15,13 +15,23 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-map {
+  height: 40vh;
+  width: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 100%
 }
 
 .App-link {
@@ -36,3 +46,5 @@
     transform: rotate(360deg);
   }
 }
+
+
