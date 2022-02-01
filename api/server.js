@@ -98,11 +98,26 @@ app.get('/api/view-treasure/:geohash', async (req, res) => {
 });
 
 const http = express();
+
 http.use('/', app);
 const port = process.env.PORT || 5000; 
-http.listen(port, (err) => {
-  if (err)
-    throw err;
-  console.log('Listening on '+port);
-});
 
+if (process.env.NODE_ENV === 'production') {
+  const httpsServer = https.createServer({
+    cert: fs.readFileSync(process.env.SSL_CERT),
+    ca: fs.readFileSync(process.env.SSL_CA),
+    key: fs.readFileSync(process.env.SSL_KEY)
+  }, http); 
+
+  httpsServer.listen(port, (err) => {
+    if (err)
+      throw err;
+    console.log('Listening on '+port);
+  });
+} else {
+  http.listen(port, (err) => {
+    if (err)
+      throw err;
+    console.log('Listening on '+port);
+  });
+}
