@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import "nes.css/css/nes.min.css";
+import { ThirdwebProvider } from "@3rdweb/react";
+import Main from './Main';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThirdwebProvider connectors={{ injected: {} }} supportedChainIds={[80001]}>
+      <Main />
+    </ThirdwebProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
